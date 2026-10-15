@@ -1,0 +1,70 @@
+classDiagram
+    class Usuario {
+      -String identificacion
+      -String nombres
+      -String apellidos
+      -String tipoUsuario
+      -String programa
+      -Integer semestre
+      -String jornada
+      -String facultadDependencia
+      -boolean estadoBloqueo
+      -boolean habilitadoPeriodo
+    }
+    class Sala {
+      -String numSala
+      -int capacidad
+      -String ubicacion
+    }
+    class Portatil {
+      -String numEquipo
+      -String estado
+    }
+    class Ubicacion {
+      -int id
+      -String nombre
+    }
+    class RegistroAcceso {
+      -int idRegistro
+      -LocalDateTime fechaHoraIngreso
+      -LocalDateTime fechaHoraSalida
+      -String numEquipo
+      -String cursoDocente
+      -String facultad
+    }
+    class PrestamoPortatil {
+      -int id
+      -String celular
+      -String auxiliar
+      -LocalDateTime fechaSolicitud
+      -LocalDateTime fechaEntrega
+      -LocalDateTime fechaDevolucion
+      -String estado
+    }
+    class SistemaService {
+      +buscarUsuario(identificacion)
+      +registrarAcceso(...)
+      +solicitarPrestamo(...)
+      +asignarPortatil(...)
+      +registrarDevolucion(id)
+      +consultarAccesos(...)
+      +consultarPrestamos(...)
+    }
+    class BaseDatos {
+      +conectar()
+      +inicializar()
+    }
+    class ExportadorExcel {
+      +exportar(archivo, hoja, columnas, datos)
+    }
+    class VentanaPrincipal {
+      +mostrar módulos Swing
+    }
+    Usuario "1" --> "0..*" RegistroAcceso : registra
+    Sala "1" --> "0..*" RegistroAcceso : recibe
+    Usuario "1" --> "0..*" PrestamoPortatil : solicita
+    Ubicacion "1" --> "0..*" PrestamoPortatil : destino
+    Portatil "0..1" --> "0..*" PrestamoPortatil : equipo asignado
+    VentanaPrincipal --> SistemaService : usa
+    SistemaService --> BaseDatos : persiste
+    SistemaService --> ExportadorExcel : exporta

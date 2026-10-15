@@ -1,0 +1,5 @@
+Identificacion,Nombres,Apellidos,Tipo,Programa,Semestre,Jornada,Facultad,Bloqueado,Activo
+DEMO1001,Andrea,Ejemplo,Estudiante,Ingeniería de Sistemas,5,Diurna,Ingeniería,false,true
+DEMO1002,Camilo,Prueba,Estudiante,Administración de Empresas,3,Nocturna,Ciencias Económicas,false,true
+DEMO2001,Docente,Demostración,Docente,,,,Ingeniería,false,true
+DEMO9001,Auxiliar,Tecnología,Auxiliar_TI,,,,Gestión Tecnológica,false,true

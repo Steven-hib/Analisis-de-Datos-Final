@@ -1,0 +1,14 @@
+flowchart LR
+    subgraph Aplicacion["Aplicación Java Swing"]
+        Vista["Vistas Swing"] --> Controlador["Controladores"]
+        Controlador --> Servicio["SistemaService"]
+        Servicio --> Modelo["Modelos del dominio"]
+        Servicio --> DBUtil["BaseDatos / JDBC"]
+        Servicio --> Importador["LectorArchivos"]
+        Servicio --> Plano["RegistroPlano CSV"]
+        Servicio --> Excel["ExportadorExcel / Apache POI"]
+    end
+    DBUtil --> DB[("SQLite local")]
+    Plano --> CSV[("accesos_salas.csv")]
+    Importador --> Archivos["TXT / CSV / XLSX"]
+    Excel --> ArchivoSalida["Reporte XLSX"]

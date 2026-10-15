@@ -1,0 +1,22 @@
+sequenceDiagram
+    actor Operador as Auxiliar / usuario
+    participant Vista as Ventana Salas
+    participant Controlador as ControladorSalas
+    participant Servicio as SistemaService
+    participant BD as SQLite
+    participant CSV as accesos_salas.csv
+    Operador->>Vista: Digita documento y selecciona sala
+    Vista->>Controlador: registrarIngreso(datos)
+    Controlador->>Servicio: registrarAcceso(datos)
+    Servicio->>BD: Buscar usuario
+    alt Usuario no encontrado
+        Servicio->>Vista: Solicitar nombre y programa de invitado
+        Vista->>Servicio: Datos del invitado
+        Servicio->>BD: Guardar usuario y habilitación
+    else Usuario existente
+        Servicio->>BD: Habilitar período activo
+    end
+    Servicio->>BD: Guardar acceso con fecha y hora
+    Servicio->>CSV: Anexar fila del acceso
+    Servicio-->>Vista: Identificador de acceso
+    Vista-->>Operador: Confirmación

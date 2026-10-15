@@ -1,0 +1,40 @@
+flowchart LR
+    Estudiante([Estudiante])
+    Docente([Docente])
+    Funcionario([Funcionario])
+    Invitado([Invitado])
+    Auxiliar([Auxiliar de TI])
+    Admin([Administrador])
+
+    subgraph Sistema["Sistema de Gestión Tecnológica"]
+        Importar([Importar usuarios])
+        Usuario([Crear o actualizar usuario])
+        Acceso([Registrar acceso a sala])
+        Salida([Registrar salida])
+        Solicitud([Solicitar portátil])
+        Alerta([Consultar alerta de bloqueo])
+        Asignar([Asignar portátil])
+        Devolver([Registrar devolución])
+        Inventario([Administrar inventario])
+        Bloqueo([Bloquear o desbloquear usuario])
+        Informe([Consultar informe])
+        Excel([Exportar a Excel])
+    end
+
+    Estudiante --> Acceso
+    Docente --> Acceso
+    Funcionario --> Acceso
+    Invitado --> Acceso
+    Estudiante --> Solicitud
+    Docente --> Solicitud
+    Funcionario --> Solicitud
+    Auxiliar --> Salida
+    Auxiliar --> Alerta
+    Auxiliar --> Asignar
+    Auxiliar --> Devolver
+    Admin --> Importar
+    Admin --> Usuario
+    Admin --> Inventario
+    Admin --> Bloqueo
+    Admin --> Informe
+    Informe --> Excel

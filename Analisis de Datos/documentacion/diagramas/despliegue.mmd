@@ -1,0 +1,13 @@
+flowchart LR
+    subgraph Equipo["Equipo del usuario / auxiliar"]
+        JVM["JVM Java 8+"]
+        App["Aplicación Swing"]
+        DB["datos/gestion_tecnologica.db"]
+        CSV["datos/accesos_salas.csv"]
+        JVM --> App
+        App --> DB
+        App --> CSV
+    end
+    Excel["Archivos de importación y reportes XLSX"]
+    App --> Excel
+    Maven["Maven Central (solo para resolver dependencias)"] -. primera compilación .-> JVM

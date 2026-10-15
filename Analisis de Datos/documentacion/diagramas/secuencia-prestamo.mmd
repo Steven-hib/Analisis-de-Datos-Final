@@ -1,0 +1,23 @@
+sequenceDiagram
+    actor Usuario
+    actor Auxiliar
+    participant Vista as Ventana Portátiles
+    participant Servicio as SistemaService
+    participant BD as SQLite
+    Usuario->>Vista: Documento, ubicación y celular
+    Vista->>Servicio: solicitarPrestamo(...)
+    Servicio->>BD: Consultar usuario y bloqueo
+    alt Usuario bloqueado
+        Servicio->>BD: Guardar solicitud ALERTA_BLOQUEO
+        Vista-->>Auxiliar: Mostrar solicitud resaltada y alerta
+    else Usuario habilitado
+        Servicio->>BD: Guardar solicitud SOLICITADO
+    end
+    Auxiliar->>Vista: Selecciona solicitud y portátil disponible
+    Vista->>Servicio: asignarPortatil(id, equipo, auxiliar)
+    Servicio->>BD: Validar bloqueo, solicitud y disponibilidad
+    Servicio->>BD: Guardar entrega y actualizar estados
+    Vista-->>Auxiliar: Confirmar asignación
+    Auxiliar->>Vista: Registrar devolución
+    Vista->>Servicio: registrarDevolucion(id)
+    Servicio->>BD: Guardar devolución y liberar portátil
